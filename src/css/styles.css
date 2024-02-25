@@ -23,3 +23,44 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.date {
+  text-align: center;
+}
+
+.weather-card {
+  width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.light-theme .weather-card {
+  background-color: #ccc;
+}
+
+.weather-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.weather-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.weather-details p {
+  margin: 5px 0;
+}
+
+.weather-details p:first-child {
+  margin-top: 0;
+}
+
+.weather-details p:last-child {
+  margin-bottom: 0;
+}
