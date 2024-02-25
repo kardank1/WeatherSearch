@@ -5,7 +5,9 @@
 // створи файл api.js що робитиме запит на бек
 // створи файл create-markup.js для створення розмітки (https://prnt.sc/LEataI862RLd)
 // додай пошук погоди в конкретному місті використовуючи форму
-import { createMarkup } from "./js/marckup";
-import { getCity } from "./js/API";
-const weatherDetails = document.querySelector('#weatherDetails'); 
-getCity().then(data => weatherDetails.insertAdjacentHTML("beforeend", createMarkup(data))  )
+import { createMarkup } from './js/marckup';
+import { getCity } from './js/API';
+const weatherDetails = document.querySelector('#weatherDetails');
+getCity().then(data =>
+  weatherDetails.insertAdjacentHTML('beforeend', createMarkup(data))
+);
