@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/WeatherSearch/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla App Template</title>
+    
+    <script type="module" crossorigin src="/WeatherSearch/commonHelpers.js"></script>
+    <link rel="stylesheet" href="/WeatherSearch/assets/index-d9d35f42.css">
+  </head>
+  <body>
+    <header class="header">
+  <a href="index.html" class="link">CurrentWeather</a>
+  <form id="searchForm">
+    <label for="name">Enter city</label>
+    <input type="text" name="name" />
+    <button type="submit">Search</button>
+</form>
+  <div class="switcher">
+    <label class="switcher-track">
+      <input type="checkbox" class="switcher-toggle" />
+      <span class="switcher-marker"></span>
+    </label>
+  </div>
+</header>
+    <p class="date">Current data and time: <span></span></p>
+    <div id="weatherDetails"></div>
+    
+  </body>
+</html>
