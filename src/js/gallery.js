@@ -12,6 +12,22 @@ const options = {
   itemsPerPage: 12,
   visiblePages: 5,
   page: 1,
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}">' +
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</a>',
+    disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</span>',
+    moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+            '<span class="tui-ico-ellip">...</span>' +
+        '</a>'
+  },
 };
 
 const pagination = new Pagination(refs.galleryTui, options);
@@ -40,6 +56,7 @@ refs.jsSearchForm.addEventListener('submit', event => {
   pagination.off('beforeMove', popular);
   api.query = searchQuery;
 
+  refs.loader.classList.remove('is-hidden');
   api.getPhotoByQuery(page).then(({ results, total }) => {
     if (!results.length) {
       iziToast.info({
@@ -53,8 +70,25 @@ refs.jsSearchForm.addEventListener('submit', event => {
       message: `We found ${total} images`,
       position: 'topRight',
     });
+    if(total<=12){
+      refs.galleryTui.classList.add("is-hidden")
+    }else{
+      refs.galleryTui.classList.remove("is-hidden")
+    }
+    
     pagination.reset(total);
-  });
+  }).catch(
+    error => {
+      console.log(error);
+      iziToast.error({
+        message: "Try later",
+        position: "topRight"
+      })
+    }
+  )
+  .finally(
+    () => refs.loader.classList.add('is-hidden')
+  );
   pagination.on('beforeMove', byQuery);
 });
 
