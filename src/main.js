@@ -40,6 +40,14 @@ function formSearch(event) {
       weatherDetails.insertAdjacentHTML('beforeend', createMarkup(data));
       const saveBtn = document.querySelector('.save-btn');
       saveBtn.addEventListener('click', () => {
+        ////////////////////home work//////////////////////
+        if (saveBtn.textContent === 'delete') {
+          localStorage.removeItem('city');
+          weatherDetails.innerHTML = '';
+          return;
+        }
+        saveBtn.textContent = 'delete';
+        //////////////////////////////////////////////////
         localStorage.setItem('city', query);
       });
     })
@@ -49,6 +57,9 @@ function formSearch(event) {
     .finally(() => inputForm.reset());
 }
 
+if (localStorage.getItem('city')) {
+}
+
 dateSpan.textContent = new Date().toLocaleString();
 setInterval(() => {
   dateSpan.textContent = new Date().toLocaleString();
@@ -56,7 +67,17 @@ setInterval(() => {
 
 const savedCity = localStorage.getItem('city');
 if (savedCity) {
-  getCity(savedCity).then(data =>
-    weatherDetails.insertAdjacentHTML('beforeend', createMarkup(data))
-  );
+  getCity(savedCity).then(data => {
+    weatherDetails.insertAdjacentHTML('beforeend', createMarkup(data));
+    const saveBtn = document.querySelector('.save-btn');
+
+    ////////////////////////home work///////////////////////////
+    saveBtn.textContent = 'delete';
+
+    saveBtn.addEventListener('click', () => {
+      localStorage.removeItem('city');
+      weatherDetails.innerHTML = '';
+    });
+    ///////////////////////////////////////////////////////////
+  });
 }
